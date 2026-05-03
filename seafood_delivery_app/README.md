@@ -28,7 +28,7 @@ A full-stack seafood delivery application built with **Flutter + Dart** on the f
 ```
 seafood_delivery_app/
 │
-├── flutter_app/                    # Flutter mobile application
+├── customer_app/                    # Flutter mobile application
 │   ├── pubspec.yaml                # Dependencies
 │   ├── android/
 │   │   └── app/
@@ -206,13 +206,13 @@ Firebase Phone Authentication is used as the fallback OTP channel when WhatsApp 
 8. **Android package name:** `com.example.seafood_delivery`
 9. Click **Register app**
 10. Download `google-services.json`
-11. Place it at: `flutter_app/android/app/google-services.json`
+11. Place it at: `customer_app/android/app/google-services.json`
 
 **Add iOS app (optional):**
 12. Click the iOS icon on the project overview
 13. **iOS bundle ID:** `com.example.seafoodDelivery`
 14. Download `GoogleService-Info.plist`
-15. Place it at: `flutter_app/ios/Runner/GoogleService-Info.plist`
+15. Place it at: `customer_app/ios/Runner/GoogleService-Info.plist`
 
 **Get service account key for backend:**
 16. In Firebase Console: **Project settings → Service accounts**
@@ -361,7 +361,7 @@ gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
 
 ```bash
 # 1. Navigate to flutter app directory
-cd seafood_delivery_app/flutter_app
+cd seafood_delivery_app/customer_app
 
 # 2. Install Flutter dependencies (from local cache, no internet needed)
 flutter pub get
@@ -433,7 +433,7 @@ uvicorn main:app --reload --port 8000
 
 **Terminal 3 — Flutter app:**
 ```bash
-cd seafood_delivery_app/flutter_app
+cd seafood_delivery_app/customer_app
 flutter run
 ```
 
