@@ -52,7 +52,7 @@ class Step3DocumentDetails extends StatelessWidget {
 }
 
 class _DocMetaCard extends StatefulWidget {
-  final String title, subtitle, icon2, docType;
+  final String title, subtitle, docType;
   final IconData icon;
 
   const _DocMetaCard({
@@ -60,7 +60,6 @@ class _DocMetaCard extends StatefulWidget {
     required this.subtitle,
     required this.icon,
     required this.docType,
-    this.icon2 = '',
   });
 
   @override

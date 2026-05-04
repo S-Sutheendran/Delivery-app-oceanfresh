@@ -105,6 +105,7 @@ class OrderProvider extends ChangeNotifier {
         deliveryPhotoUrl: o.deliveryPhotoUrl,
         driverAssignedAt: o.driverAssignedAt,
         pickedUpAt: o.pickedUpAt,
+        deliveredAt: o.deliveredAt,
       );
       notifyListeners();
     }

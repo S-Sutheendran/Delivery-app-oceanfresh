@@ -4,6 +4,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../config/theme.dart';
 import '../../config/app_routes.dart';
 import '../../providers/auth_provider.dart';
+import '../../models/assigned_order_model.dart';
 import '../../providers/order_provider.dart';
 import '../../providers/location_provider.dart';
 import '../../widgets/order_card.dart';
@@ -258,12 +259,12 @@ class _OrdersSection extends StatelessWidget {
     );
   }
 
-  List<dynamic> _sortedByRoute(OrderProvider orders) {
+  List<AssignedOrder> _sortedByRoute(OrderProvider orders) {
     if (orders.optimizedRoute.isEmpty) return orders.orders;
     final byId = {for (final o in orders.orders) o.orderId: o};
     return orders.optimizedRoute
         .map((stop) => byId[stop.orderId])
-        .where((o) => o != null)
+        .whereType<AssignedOrder>()
         .toList();
   }
 }

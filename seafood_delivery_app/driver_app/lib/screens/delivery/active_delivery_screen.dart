@@ -21,12 +21,15 @@ class _ActiveDeliveryScreenState extends State<ActiveDeliveryScreen> {
   final _mapController = MapController();
   late int _orderId;
   AssignedOrder? _order;
+  LocationProvider? _locationProvider;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _orderId = ModalRoute.of(context)!.settings.arguments as int;
+    _locationProvider = context.read<LocationProvider>();
     final orders = context.read<OrderProvider>();
+    if (orders.orders.isEmpty) return;
     _order = orders.orders.firstWhere(
       (o) => o.orderId == _orderId,
       orElse: () => orders.orders.first,
@@ -37,15 +40,15 @@ class _ActiveDeliveryScreenState extends State<ActiveDeliveryScreen> {
   void _startTracking() {
     final order = _order;
     if (order == null || !order.hasCoordinates) return;
-    context.read<LocationProvider>().startTracking(
-          _orderId,
-          deliveryTarget: LatLng(order.deliveryLat!, order.deliveryLng!),
-        );
+    _locationProvider?.startTracking(
+      _orderId,
+      deliveryTarget: LatLng(order.deliveryLat!, order.deliveryLng!),
+    );
   }
 
   @override
   void dispose() {
-    context.read<LocationProvider>().stopTracking();
+    _locationProvider?.stopTracking();
     super.dispose();
   }
 
